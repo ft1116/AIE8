@@ -37,15 +37,15 @@ You will be required to submit a link to your GitHub, as well as screenshots of 
 Please evaluate your system on the following questions:
 
 1. Explain the concept of object-oriented programming in simple terms to a complete beginner. 
-    - Aspect Tested:
+    - Aspect Tested: This question tests the LLM's ability to follow directions and answer a user generated question about object-oriented programming. The chatbot did a great job summarizing OOP at a high level though summarizing the concepts of objects, classes, encapsulation, inheritance, and polymorphism. I do feel like this answer could have been made more simple for the case of someone who is a complete beginner.
 2. Read the following paragraph and provide a concise summary of the key points…
-    - Aspect Tested:
+    - Aspect Tested: This command is testing the LLM's ability to summarize text ina concise manner. The LLM did a of summarizing the paragraph about TSLA stock however it was not as concise as I would have liked. Next time I can further specify if I want to summarize in (X) number of distinct bulletpoints.
 3. Write a short, imaginative story (100–150 words) about a robot finding friendship in an unexpected place.
-    - Aspect Tested:
+    - Aspect Tested: This prompt is testing the creative ability of the chatbot as well as it's capability to follow user-defined instructions. The chatbot's story met the user-specified criteria on word count and unexpected friendship. The story did not read as smooth as it could have and there is some room to improve the overall flow.
 4. If a store sells apples in packs of 4 and oranges in packs of 3, how many packs of each do I need to buy to get exactly 12 apples and 9 oranges?
-    - Aspect Tested:
+    - Aspect Tested: This prompt is testing the compute capabilities of the LLM powered chatbot. This is a basic word problem so the chatbot is also being tested on it's ability to assign meaning to sentences and perform arithmatic. The answer the chatbot gave can be improved by using actual mathmatical symbols instead of text. This would help with UX.
 5. Rewrite the following paragraph in a professional, formal tone…
-    - Aspect Tested:
+    - Aspect Tested: This prompt is testing the ability of the to make changes to words while still preserving the meanning and context of origional text. The chatbot could be improved in this regard. The sentences in the new text are off and the verb agreements are not correct. It can definitely be improved upon.
 
 This "vibe check" now serves as a baseline, of sorts, to help understand what holes your application has.
 
@@ -58,7 +58,7 @@ This "vibe check" now serves as a baseline, of sorts, to help understand what ho
 #### ❓Question #1:
 
 What are some limitations of vibe checking as an evaluation tool?
-##### ✅ Answer:
+##### ✅ Answer: Vibe checking is a good first pass look at the system to make sure everything is checking out. Although vibe checking can help make sure everything is working as expected a number of tests must be done to handle edge cases. In this case I would say vibe checking is more of a art than a science. The more experience one has testing the robustness of the app the better.
 
 ### 🚧 Advanced Build (OPTIONAL):
 
