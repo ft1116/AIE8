@@ -13,22 +13,88 @@ def cosine_similarity(vector_a: np.array, vector_b: np.array) -> float:
     return dot_product / (norm_a * norm_b)
 
 
+def euclidean_distance(vector_a: np.array, vector_b: np.array) -> float:
+    """Computes the Euclidean distance between two vectors.
+    Returns negative distance for similarity ranking (smaller distance = higher similarity)."""
+    return -np.linalg.norm(vector_a - vector_b)
+
+
+def manhattan_distance(vector_a: np.array, vector_b: np.array) -> float:
+    """Computes the Manhattan (L1) distance between two vectors.
+    Returns negative distance for similarity ranking (smaller distance = higher similarity)."""
+    return -np.sum(np.abs(vector_a - vector_b))
+
+
+def dot_product_similarity(vector_a: np.array, vector_b: np.array) -> float:
+    """Computes the dot product similarity between two vectors."""
+    return np.dot(vector_a, vector_b)
+
+
+def pearson_correlation(vector_a: np.array, vector_b: np.array) -> float:
+    """Computes the Pearson correlation coefficient between two vectors."""
+    # Handle edge cases
+    if np.std(vector_a) == 0 or np.std(vector_b) == 0:
+        return 0.0
+    
+    correlation_matrix = np.corrcoef(vector_a, vector_b)
+    return correlation_matrix[0, 1] if not np.isnan(correlation_matrix[0, 1]) else 0.0
+
+
+def jaccard_similarity(vector_a: np.array, vector_b: np.array) -> float:
+    """Computes the Jaccard similarity between two vectors.
+    Note: This converts vectors to binary (positive/negative) for set operations."""
+    # Convert to binary vectors (positive values = 1, negative/zero = 0)
+    binary_a = (vector_a > 0).astype(int)
+    binary_b = (vector_b > 0).astype(int)
+    
+    intersection = np.sum(binary_a & binary_b)
+    union = np.sum(binary_a | binary_b)
+    
+    return intersection / union if union > 0 else 0.0
+
+
 class VectorDatabase:
     def __init__(self, embedding_model: EmbeddingModel = None):
         self.vectors = defaultdict(np.array)
         self.embedding_model = embedding_model or EmbeddingModel()
+        
+        # Available distance metrics
+        self.distance_metrics = {
+            'cosine': cosine_similarity,
+            'euclidean': euclidean_distance,
+            'manhattan': manhattan_distance,
+            'dot_product': dot_product_similarity,
+            'pearson': pearson_correlation,
+            'jaccard': jaccard_similarity
+        }
 
     def insert(self, key: str, vector: np.array) -> None:
         self.vectors[key] = vector
+    
+    def get_available_metrics(self) -> List[str]:
+        """Returns a list of available distance metric names."""
+        return list(self.distance_metrics.keys())
+    
+    def get_distance_function(self, metric_name: str) -> Callable:
+        """Returns the distance function for a given metric name."""
+        if metric_name not in self.distance_metrics:
+            raise ValueError(f"Unknown distance metric: {metric_name}. Available metrics: {self.get_available_metrics()}")
+        return self.distance_metrics[metric_name]
 
     def search(
         self,
         query_vector: np.array,
         k: int,
-        distance_measure: Callable = cosine_similarity,
+        distance_measure = "cosine",
     ) -> List[Tuple[str, float]]:
+        # Handle both function and string inputs
+        if isinstance(distance_measure, str):
+            distance_function = self.get_distance_function(distance_measure)
+        else:
+            distance_function = distance_measure
+            
         scores = [
-            (key, distance_measure(query_vector, vector))
+            (key, distance_function(query_vector, vector))
             for key, vector in self.vectors.items()
         ]
         return sorted(scores, key=lambda x: x[1], reverse=True)[:k]
@@ -37,7 +103,7 @@ class VectorDatabase:
         self,
         query_text: str,
         k: int,
-        distance_measure: Callable = cosine_similarity,
+        distance_measure = "cosine",
         return_as_text: bool = False,
     ) -> List[Tuple[str, float]]:
         query_vector = self.embedding_model.get_embedding(query_text)
