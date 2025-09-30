@@ -1,0 +1,104 @@
+MULTI-AGENT RAG SYSTEM FLOW DIAGRAM
+=====================================
+
+Based on the execution trace: "How does the average person use AI?"
+
+
+                    ┌─────────────────────────────────────┐
+                    │           START                     │
+                    └─────────────────┬───────────────────┘
+                                      │
+                                      ▼
+                    ┌─────────────────────────────────────┐
+                    │      ResearchSupervisor             │
+                    │                                     │
+                    │  • Entry Point                     │
+                    │  • Routes tasks to agents          │
+                    │  • Evaluates completion            │
+                    └─────────────────┬───────────────────┘
+                                      │
+                                      ▼
+                    ┌─────────────────────────────────────┐
+                    │        DECISION POINT               │
+                    │                                     │
+                    │  Query: "How does the average       │
+                    │         person use AI?"             │
+                    │                                     │
+                    │  Decision: Route to                 │
+                    │  "HowPeopleUseAIRetriever"          │
+                    └─────────────────┬───────────────────┘
+                                      │
+                                      ▼
+                    ┌─────────────────────────────────────┐
+                    │   HowPeopleUseAIRetriever Agent     │
+                    │                                     │
+                    │  • Receives query                   │
+                    │  • Queries RAG system               │
+                    │  • Retrieves 4 document chunks      │
+                    │  • Generates comprehensive response │
+                    │                                     │
+                    │  Response includes:                 │
+                    │  - Therapy/Companionship            │
+                    │  - Education (10.2% of messages)    │
+                    │  - Work tasks (writing, coding)     │
+                    │  - Custom outputs                   │
+                    │  - Demographic patterns             │
+                    └─────────────────┬───────────────────┘
+                                      │
+                                      ▼
+                    ┌─────────────────────────────────────┐
+                    │      ResearchSupervisor             │
+                    │        (Re-evaluation)              │
+                    │                                     │
+                    │  • Reviews agent output             │
+                    │  • Assesses completeness            │
+                    │  • Makes routing decision           │
+                    └─────────────────┬───────────────────┘
+                                      │
+                                      ▼
+                    ┌─────────────────────────────────────┐
+                    │        DECISION POINT               │
+                    │                                     │
+                    │  Assessment: Response is complete   │
+                    │  and comprehensive                  │
+                    │                                     │
+                    │  Decision: Route to "FINISH"        │
+                    └─────────────────┬───────────────────┘
+                                      │
+                                      ▼
+                    ┌─────────────────────────────────────┐
+                    │             END                     │
+                    └─────────────────────────────────────┘
+
+
+AVAILABLE BUT UNUSED AGENTS:
+============================
+
+                    ┌─────────────────────────────────────┐
+                    │         Search Agent                │
+                    │                                     │
+                    │  • Uses Tavily search engine        │
+                    │  • Provides real-time information   │
+                    │  • Would be used for current events │
+                    │  • Not needed for this query        │
+                    └─────────────────────────────────────┘
+
+
+KEY INSIGHTS:
+=============
+
+1. INTELLIGENT ROUTING: Supervisor correctly identified that this query
+   needed specific knowledge from the RAG system rather than web search.
+
+2. EFFICIENT EXECUTION: Only one agent was needed to complete the task,
+   demonstrating the system's ability to choose the right tool.
+
+3. QUALITY ASSESSMENT: The supervisor determined the response was
+   comprehensive enough to finish without additional agents.
+
+4. CONTEXT AWARENESS: The RAG system successfully retrieved relevant
+   information from the PDF documents about AI usage patterns.
+
+5. STATE MANAGEMENT: The system maintained conversation state and
+   made informed decisions about task completion.
+
