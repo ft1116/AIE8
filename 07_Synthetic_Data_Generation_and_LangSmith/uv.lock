@@ -1,5 +1,5 @@
 version = 1
-revision = 2
+revision = 3
 requires-python = ">=3.13"
 
 [[package]]
@@ -15,6 +15,7 @@ dependencies = [
     { name = "nltk" },
     { name = "numpy" },
     { name = "pymupdf" },
+    { name = "python-dotenv" },
     { name = "ragas" },
     { name = "unstructured" },
 ]
@@ -29,6 +30,7 @@ requires-dist = [
     { name = "nltk", specifier = "==3.8.1" },
     { name = "numpy", specifier = ">=2.2.2" },
     { name = "pymupdf", specifier = ">=1.26.3" },
+    { name = "python-dotenv", specifier = ">=1.1.1" },
     { name = "ragas", specifier = "==0.2.10" },
     { name = "unstructured", specifier = ">=0.14.8" },
 ]
