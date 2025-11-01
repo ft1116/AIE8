@@ -22,7 +22,7 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.tools import tool
 from langchain_openai import ChatOpenAI
 from langchain_openai.embeddings import OpenAIEmbeddings
-from langgraph.graph import START, StateGraph
+from langgraph.graph import StateGraph
 from typing_extensions import TypedDict
 
 
@@ -101,7 +101,6 @@ def _build_rag_graph(data_dir: str) -> "CompiledGraph":
 
     graph_builder = StateGraph(_RAGState)
     graph_builder = graph_builder.add_sequence([retrieve, generate])
-    graph_builder.add_edge(START, "retrieve")
     return graph_builder.compile()
 
 
