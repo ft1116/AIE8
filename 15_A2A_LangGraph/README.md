@@ -103,7 +103,7 @@ An `AgentCard` is a metadata structure in the A2A (Agent-to-Agent) protocol that
    - `streaming` - Whether the agent supports streaming responses
    - `push_notifications` - Whether the agent supports push notifications
 
-6. **`skills`** - A list of `AgentSkill` objects, each describing a capability the agent possesses:
+6. **`skills`** - A list of `AgentSkill` objects (web search tool, academic paper search, document retrieval), each describing a capability the agent possesses:
    - `id` - Unique identifier for the skill
    - `name` - Human-readable name of the skill
    - `description` - What the skill does
@@ -135,7 +135,7 @@ Why is A2A (and other such protocols) important in your own words?
 
 A2A (Agent-to-Agent) and similar protocols are important because they solve a fundamental problem: **how do different AI agents talk to each other?** **Without a protocol, it's like having people who only speak different languages trying to work together.** Each agent would need custom code to talk to every other agent, which is messy and doesn't scale. With A2A protocol, it's like everyone agreeing to speak the same "common language" and follow the same "rules of conversation." In essence, A2A protocol is the "common language" that allows AI agents to form teams, collaborate, and build complex systems together - just like how HTTP allows web browsers to talk to any web server, regardless of who built them.
 
-Here's why this matters:
+This matters because of:
 
 1. **Interoperability** - Agents built by different teams, using different tools (OpenAI, Anthropic, custom models), can all communicate using the same protocol. You don't need to rewrite everything when you want agents to work together.
 
