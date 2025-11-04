@@ -130,11 +130,7 @@ Why is A2A (and other such protocols) important in your own words?
 
 ##### ✅ Answer:
 
-A2A (Agent-to-Agent) and similar protocols are important because they solve a fundamental problem: **how do different AI agents talk to each other?**
-
-Think of it like this: **Without a protocol, it's like having people who only speak different languages trying to work together.** Each agent would need custom code to talk to every other agent, which is messy and doesn't scale.
-
-**With A2A protocol, it's like everyone agreeing to speak the same "common language" and follow the same "rules of conversation."**
+A2A (Agent-to-Agent) and similar protocols are important because they solve a fundamental problem: **how do different AI agents talk to each other?** **Without a protocol, it's like having people who only speak different languages trying to work together.** Each agent would need custom code to talk to every other agent, which is messy and doesn't scale. With A2A protocol, it's like everyone agreeing to speak the same "common language" and follow the same "rules of conversation." In essence, A2A protocol is the "common language" that allows AI agents to form teams, collaborate, and build complex systems together - just like how HTTP allows web browsers to talk to any web server, regardless of who built them.
 
 Here's why this matters:
 
@@ -148,7 +144,6 @@ Here's why this matters:
 
 5. **Ecosystem growth** - When everyone follows the same protocol, it creates a marketplace of agents. You can mix and match agents from different vendors, just like how you can use apps from different developers on your phone because they all follow the same app store rules.
 
-**In essence, A2A protocol is the "common language" that allows AI agents to form teams, collaborate, and build complex systems together - just like how HTTP allows web browsers to talk to any web server, regardless of who built them.**
 
 <br /><br />
 
