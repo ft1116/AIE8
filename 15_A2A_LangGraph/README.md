@@ -89,8 +89,6 @@ What are the core components of an `AgentCard`?
 
 ##### ✅ Answer:
 
-An AgentCard is like a business card for an AI agent. It tells other agents: What it does (description),What it's good at (skills like web search, paper search), Where to find it (URL), How to talk to it (protocol version, transport method), What it can handle (input/output types).It's a standardized way for agents to discover each other and communicate.
-
 An `AgentCard` is a metadata structure in the A2A (Agent-to-Agent) protocol that describes an agent's capabilities, skills, and how to communicate with it. The core components include:
 
 1. **`name`** - A string identifier/name for the agent (e.g., "General Purpose Agent")
@@ -105,12 +103,17 @@ An `AgentCard` is a metadata structure in the A2A (Agent-to-Agent) protocol that
    - `streaming` - Whether the agent supports streaming responses
    - `push_notifications` - Whether the agent supports push notifications
 
-6. **`skills`** - A list of `AgentSkill` objects, each describing a capability the agent possesses (web search, arxiv search, rag_search):
+6. **`skills`** - A list of `AgentSkill` objects, each describing a capability the agent possesses:
    - `id` - Unique identifier for the skill
    - `name` - Human-readable name of the skill
    - `description` - What the skill does
    - `tags` - Array of tags for categorization
    - `examples` - Example queries that demonstrate the skill
+   
+   Example skills from the agent:
+   - **Web Search Tool** - Search the web for current information
+   - **Academic Paper Search** - Search for academic papers on arXiv
+   - **Document Retrieval** - Search through loaded documents for specific information
 
 7. **`default_input_modes`** - Array of supported input content types (e.g., `["text", "text/plain"]`)
 
@@ -143,7 +146,6 @@ Here's why this matters:
 4. **Future-proofing** - As new agents are built, they can immediately work with existing agents if they follow the protocol. It's like USB - once the standard existed, all devices could plug in, regardless of who made them.
 
 5. **Ecosystem growth** - When everyone follows the same protocol, it creates a marketplace of agents. You can mix and match agents from different vendors, just like how you can use apps from different developers on your phone because they all follow the same app store rules.
-
 
 <br /><br />
 
