@@ -89,6 +89,39 @@ What are the core components of an `AgentCard`?
 
 ##### ✅ Answer:
 
+An AgentCard is like a business card for an AI agent. It tells other agents: What it does (description),What it's good at (skills like web search, paper search), Where to find it (URL), How to talk to it (protocol version, transport method), What it can handle (input/output types).It's a standardized way for agents to discover each other and communicate.
+
+An `AgentCard` is a metadata structure in the A2A (Agent-to-Agent) protocol that describes an agent's capabilities, skills, and how to communicate with it. The core components include:
+
+1. **`name`** - A string identifier/name for the agent (e.g., "General Purpose Agent")
+
+2. **`description`** - A human-readable description of what the agent does and its purpose
+
+3. **`url`** - The base URL where the agent server is accessible (e.g., "http://localhost:10000/")
+
+4. **`version`** - A version string indicating the agent's version (e.g., "1.0.0")
+
+5. **`capabilities`** - An `AgentCapabilities` object that specifies what the agent can do:
+   - `streaming` - Whether the agent supports streaming responses
+   - `push_notifications` - Whether the agent supports push notifications
+
+6. **`skills`** - A list of `AgentSkill` objects, each describing a capability the agent possesses (web search, arxiv search, rag_search):
+   - `id` - Unique identifier for the skill
+   - `name` - Human-readable name of the skill
+   - `description` - What the skill does
+   - `tags` - Array of tags for categorization
+   - `examples` - Example queries that demonstrate the skill
+
+7. **`default_input_modes`** - Array of supported input content types (e.g., `["text", "text/plain"]`)
+
+8. **`default_output_modes`** - Array of supported output content types
+
+9. **`protocolVersion`** - The version of the A2A protocol being used (e.g., "0.3.0")
+
+10. **`preferredTransport`** - The preferred communication transport method (e.g., "JSONRPC")
+
+The AgentCard serves as a "business card" that allows other agents or clients to discover what an agent can do and how to communicate with it, enabling interoperability in multi-agent systems.
+
 <br />
 
 ### ❓ Question #2:
@@ -96,6 +129,26 @@ What are the core components of an `AgentCard`?
 Why is A2A (and other such protocols) important in your own words?
 
 ##### ✅ Answer:
+
+A2A (Agent-to-Agent) and similar protocols are important because they solve a fundamental problem: **how do different AI agents talk to each other?**
+
+Think of it like this: **Without a protocol, it's like having people who only speak different languages trying to work together.** Each agent would need custom code to talk to every other agent, which is messy and doesn't scale.
+
+**With A2A protocol, it's like everyone agreeing to speak the same "common language" and follow the same "rules of conversation."**
+
+Here's why this matters:
+
+1. **Interoperability** - Agents built by different teams, using different tools (OpenAI, Anthropic, custom models), can all communicate using the same protocol. You don't need to rewrite everything when you want agents to work together.
+
+2. **Discovery** - Just like how you can look up a business card to see what someone does, agents can discover each other's capabilities through AgentCards. One agent can ask "What can you do?" and get a standardized answer.
+
+3. **Modularity** - Instead of building one giant agent that does everything, you can build specialized agents (one for web search, one for documents, one for calculations) and have them collaborate. Each agent is a "specialist" that can be called upon when needed.
+
+4. **Future-proofing** - As new agents are built, they can immediately work with existing agents if they follow the protocol. It's like USB - once the standard existed, all devices could plug in, regardless of who made them.
+
+5. **Ecosystem growth** - When everyone follows the same protocol, it creates a marketplace of agents. You can mix and match agents from different vendors, just like how you can use apps from different developers on your phone because they all follow the same app store rules.
+
+**In essence, A2A protocol is the "common language" that allows AI agents to form teams, collaborate, and build complex systems together - just like how HTTP allows web browsers to talk to any web server, regardless of who built them.**
 
 <br /><br />
 
