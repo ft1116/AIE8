@@ -208,6 +208,7 @@ def validate_output(
     guard: Guard,
     agent_response: str,
     context: Optional[str] = None,
+    original_prompt: Optional[str] = None,
     raise_on_failure: bool = True
 ) -> Dict[str, Any]:
     """Validate agent output using a Guardrails guard.
@@ -216,6 +217,7 @@ def validate_output(
         guard: The Guard instance to use for validation.
         agent_response: The agent's response to validate.
         context: Optional context for factuality checking.
+        original_prompt: Optional original user prompt (required by LlmRagEvaluator).
         raise_on_failure: Whether to raise an exception on validation failure.
             If False, returns validation result. Default: True.
         
@@ -226,9 +228,16 @@ def validate_output(
         RuntimeError: If validation fails and raise_on_failure is True.
     """
     try:
-        # For factuality guards, include context if provided
+        # Build metadata for factuality guards (LlmRagEvaluator requires original_prompt)
+        metadata = {}
+        if original_prompt:
+            metadata["original_prompt"] = original_prompt
         if context:
-            result = guard.validate(agent_response, metadata={"context": context})
+            metadata["context"] = context
+        
+        # Validate with metadata if available
+        if metadata:
+            result = guard.validate(agent_response, metadata=metadata)
         else:
             result = guard.validate(agent_response)
         
